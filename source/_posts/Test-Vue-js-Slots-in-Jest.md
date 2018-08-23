@@ -4,7 +4,6 @@ tags:
   - VueJS
   - JavaScript
   - Testing
-description: Learn how to test content distributed using slots and named slots.
 date: 2017-10-02 14:50:49
 ---
 
@@ -146,14 +145,13 @@ const children = this.$slots.default
 
 Probably what we want to test the most out of slots is where they end up in the component, and for that we can reuse the skills got in the article _[Test Styles and Structure of Vue.js Components in Jest](/2017/09/04/Test-Styles-and-Structure-of-Vue-js-Components-in-Jest/)_.
 
-
 Right now, most of the tests in `MessageList.test.js` will fail, so let's remove them all (or comment them out), and focus on slot testing.
 
 One thing we can test, is to make sure that the Message components end up within a `ul` element with class `list-messages`. In order to pass slots to the `MessageList` component, we can use the `slots` property of the options object of `mount` or `shallowMount` methods. So let's create a [`beforeEach` method](https://jestjs.io/docs/en/api.html#beforeeachfn-timeout) with the following code:
 
 ```javascript
 beforeEach(() => {
-  cmp = mount(MessageList, {
+  cmp = shallowMount(MessageList, {
     slots: {
       default: '<div class="fake-msg"></div>'
     }
